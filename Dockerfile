@@ -30,4 +30,4 @@ ENV MIX_ENV=prod
 ENV PORT=4000
 
 # Run the application
-CMD ["mix", "phx.server"]
+CMD ["mix", "phx.server", "--no-halt"]
