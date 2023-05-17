@@ -19,6 +19,9 @@ RUN mix deps.get
 # Compile the project
 RUN mix do compile
 
+# Digest the static assets
+RUN mix phx.digest
+
 # Make port 4000 available to the world outside this container
 EXPOSE 4000
 
