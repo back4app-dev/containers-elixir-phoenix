@@ -13,6 +13,11 @@ RUN mix local.hex --force
 # Install rebar (Erlang build tool)
 RUN mix local.rebar --force
 
+# Set environment variables
+ENV MIX_ENV=prod
+ENV SECRET_KEY_BASE=YourSecretKeyHere 
+ENV PORT=4000
+
 # Install dependencies
 RUN mix deps.get
 
@@ -25,9 +30,5 @@ RUN mix phx.digest
 # Make port 4000 available to the world outside this container
 EXPOSE 4000
 
-# Define environment variable
-ENV MIX_ENV=prod
-ENV PORT=4000
-
 # Run the application
-CMD ["mix", "phx.server", "--no-halt"]
+CMD ["mix", "phx.server"]
