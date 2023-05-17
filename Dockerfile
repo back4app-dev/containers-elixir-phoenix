@@ -1,0 +1,30 @@
+# Use an official Elixir runtime as a parent image
+FROM elixir:1.12.3-alpine
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install hex package manager
+RUN mix local.hex --force
+
+# Install rebar (Erlang build tool)
+RUN mix local.rebar --force
+
+# Install dependencies
+RUN mix deps.get
+
+# Compile the project
+RUN mix do compile
+
+# Make port 4000 available to the world outside this container
+EXPOSE 4000
+
+# Define environment variable
+ENV MIX_ENV=prod
+ENV PORT=4000
+
+# Run the application
+CMD ["mix", "phx.server"]
