@@ -21,8 +21,6 @@ ENV PORT=4000
 # Install dependencies
 RUN mix deps.get
 
-# Compile the project
-RUN mix do compile
 
 # Digest the static assets
 RUN mix phx.digest
